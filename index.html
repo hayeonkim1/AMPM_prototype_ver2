@@ -456,7 +456,7 @@
             </div>
           </section>
 
-          <section id="page-promotion" data-page class="hide-scrollbar hidden h-full overflow-y-auto bg-white pt-[110px]">
+          <section id="page-promotion" data-page class="hide-scrollbar relative hidden h-full touch-pan-y overflow-y-auto bg-white pb-[96px] pt-[110px]">
             <div class="relative w-full">
               <img
                 src="./design/8.promotion_page.jpg"
@@ -931,14 +931,14 @@
             ></p>
             <div class="mt-6 flex gap-3">
               <button
-                id="btn-revisit-yes"
+                id="feedback-survey-yes"
                 type="button"
                 class="btn-revisit-confirm flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
               >
                 네, 방문할게요
               </button>
               <button
-                id="btn-revisit-no"
+                id="feedback-survey-no"
                 type="button"
                 class="btn-revisit-cancel flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
               >
@@ -984,18 +984,18 @@
             ></p>
             <div class="mt-6 flex gap-3">
               <button
-                id="checkout-complete-yes"
+                id="btn-revisit-yes"
                 type="button"
-                class="flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
+                class="btn-revisit-confirm flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
               >
-                예
+                네, 방문할게요
               </button>
               <button
-                id="checkout-complete-no"
+                id="btn-revisit-no"
                 type="button"
-                class="flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
+                class="btn-revisit-cancel flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
               >
-                아니오
+                아니요
               </button>
             </div>
           </div>
@@ -1040,15 +1040,15 @@
       const welcomeStartButton = document.getElementById("welcome-start-button");
       const feedbackSurveyModal = document.getElementById("feedback-survey-modal");
       const feedbackSurveyTitle = document.getElementById("feedback-survey-title");
-      const feedbackSurveyYes = document.getElementById("btn-revisit-yes");
-      const feedbackSurveyNo = document.getElementById("btn-revisit-no");
+      const feedbackSurveyYes = document.getElementById("feedback-survey-yes");
+      const feedbackSurveyNo = document.getElementById("feedback-survey-no");
       const addToCartModal = document.getElementById("add-to-cart-modal");
       const addToCartMoreButton = document.getElementById("add-to-cart-more");
       const addToCartGoCartButton = document.getElementById("add-to-cart-go-cart");
       const checkoutCompleteModal = document.getElementById("checkout-complete-modal");
       const checkoutCompleteMessage = document.getElementById("checkout-complete-message");
-      const checkoutCompleteYes = document.getElementById("checkout-complete-yes");
-      const checkoutCompleteNo = document.getElementById("checkout-complete-no");
+      const checkoutCompleteYes = document.getElementById("btn-revisit-yes");
+      const checkoutCompleteNo = document.getElementById("btn-revisit-no");
       const globalTopBar = document.getElementById("global-top-bar");
       const topbarTitle = document.getElementById("topbar-title");
       const topbarBack = document.getElementById("topbar-back");
