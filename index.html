@@ -40,12 +40,30 @@
             class="hide-scrollbar relative h-full overflow-y-auto"
             aria-label="Home page"
           >
-            <img
-              src="./design/1.main.jpg"
-              alt="AMPM Home Page"
-              class="block h-auto w-full select-none"
-              draggable="false"
-            />
+            <div class="relative w-full">
+              <img
+                src="./design/1.main.jpg"
+                alt="AMPM Home Page"
+                class="block h-auto w-full select-none"
+                draggable="false"
+              />
+              <!-- 소비 리포트 배너 영역(1.main.jpg) 위 텍스트 — 이미지와 함께 스크롤 -->
+              <div
+                id="home-consumption-report-overlay"
+                class="pointer-events-none absolute left-[38px] top-[56%] z-[11] flex max-w-[min(380px,calc(100%-48px))] flex-col gap-[6px] text-left [font-family:Inter,_sans-serif]"
+                aria-hidden="true"
+              >
+                <p class="m-0 text-base font-medium leading-tight">
+                  <span id="home-consumption-overlay-nick" class="text-[#6A2CED]"></span><span class="text-[#4B5563]"> 님을 위한</span>
+                </p>
+                <p class="m-0 text-2xl font-bold leading-tight">
+                  <span class="text-black">이번 주 </span><span class="text-[#6A2CED]">개인 소비 리포트</span>
+                </p>
+                <p class="m-0 text-base font-medium leading-tight">
+                  <span id="home-consumption-overlay-range" class="text-[#4B5563]"></span>
+                </p>
+              </div>
+            </div>
             <!-- 홈 메인 배경(1.main.jpg) 오른쪽 상단 아이콘 핫스팟: 이미지에 맞게 top / right / gap / w·h 조정 -->
             <div
               class="pointer-events-none absolute right-[14px] top-[52px] z-[15] flex flex-row items-center gap-2"
@@ -64,7 +82,7 @@
                 aria-label="장바구니"
               ></button>
             </div>
-            <!-- 간식 배너(1.main.jpg 내 라벤더 카드) 위 문구: 위치는 래퍼 left / top / max-w 로 조정. 줄별 스타일은 각 span -->
+            <!-- 간식 배너(1.main.jpg 내 라벤더 카드) 위 문구: 위치는 래퍼 left / top / max-w 로 조정 -->
             <div
               id="home-snack-banner-nickname"
               class="pointer-events-none absolute left-[40px] top-[330px] z-[12] flex max-w-[220px] flex-col items-start [font-family:Inter,_sans-serif]"
@@ -391,37 +409,31 @@
               <img
                 src="./design/event_page.jpg"
                 alt="AMPM Event Page"
-                class="block h-auto w-full select-none"
+                class="block h-auto w-full cursor-default select-none"
                 draggable="false"
                 onerror="this.onerror=null;this.src='./design/3.Eventpage.jpg';"
               />
+
+              <div class="absolute left-1/2 top-[72%] z-20 flex -translate-x-1/2 gap-2">
+                <button type="button" data-event-cart-id="5" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 5"></button>
+                <button type="button" data-event-cart-id="17" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 17"></button>
+                <button type="button" data-event-cart-id="18" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 18"></button>
+                <button type="button" data-event-cart-id="19" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 19"></button>
+              </div>
+
+              <div class="absolute left-1/2 top-[85%] z-20 flex -translate-x-1/2 gap-2">
+                <button type="button" data-event-cart-id="9" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 9"></button>
+                <button type="button" data-event-cart-id="11" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 10"></button>
+                <button type="button" data-event-cart-id="10" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 11"></button>
+                <button type="button" data-event-cart-id="12" class="relative z-30 h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 12"></button>
+              </div>
+
               <button
                 id="event-coupon-hotspot"
                 type="button"
-                class="absolute left-1/2 top-[48%] z-10 h-[52px] w-[170px] -translate-x-1/2 bg-transparent"
+                class="pointer-events-auto absolute left-1/2 top-[50%] z-40 h-[52px] w-[170px] -translate-x-1/2 cursor-pointer bg-transparent"
                 aria-label="이벤트 쿠폰 받기"
               ></button>
-
-              <div class="absolute left-1/2 top-[66.5%] z-10 flex -translate-x-1/2 gap-2">
-                <button type="button" data-event-product-id="5" class="h-[72px] w-[82px] cursor-pointer bg-transparent" aria-label="상품 이미지 5"></button>
-                <button type="button" data-event-product-id="17" class="h-[72px] w-[82px] cursor-pointer bg-transparent" aria-label="상품 이미지 17"></button>
-                <button type="button" data-event-product-id="18" class="h-[72px] w-[82px] cursor-pointer bg-transparent" aria-label="상품 이미지 18"></button>
-                <button type="button" data-event-product-id="19" class="h-[72px] w-[82px] cursor-pointer bg-transparent" aria-label="상품 이미지 19"></button>
-              </div>
-
-              <div class="absolute left-1/2 top-[72%] z-10 flex -translate-x-1/2 gap-2">
-                <button type="button" data-event-cart-id="5" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 5"></button>
-                <button type="button" data-event-cart-id="17" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 17"></button>
-                <button type="button" data-event-cart-id="18" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 18"></button>
-                <button type="button" data-event-cart-id="19" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 19"></button>
-              </div>
-
-              <div class="absolute left-1/2 top-[85%] z-10 flex -translate-x-1/2 gap-2">
-                <button type="button" data-event-cart-id="9" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 9"></button>
-                <button type="button" data-event-cart-id="11" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 10"></button>
-                <button type="button" data-event-cart-id="10" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 11"></button>
-                <button type="button" data-event-cart-id="12" class="h-9 w-[82px] cursor-pointer bg-transparent" aria-label="장바구니 담기 12"></button>
-              </div>
             </div>
           </section>
 
@@ -886,6 +898,37 @@
           </div>
         </div>
 
+        <div
+          id="feedback-survey-modal"
+          class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/50 p-5"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="feedback-survey-title"
+        >
+          <div class="w-full max-w-[420px] rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-gray-200 [font-family:Inter,_sans-serif]">
+            <p
+              id="feedback-survey-title"
+              class="whitespace-pre-line text-center text-base leading-relaxed text-gray-800"
+            ></p>
+            <div class="mt-6 flex gap-3">
+              <button
+                id="feedback-survey-yes"
+                type="button"
+                class="flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
+              >
+                예
+              </button>
+              <button
+                id="feedback-survey-no"
+                type="button"
+                class="flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
+              >
+                아니오
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div id="add-to-cart-modal" class="fixed inset-0 z-[92] hidden items-center justify-center bg-black/40 p-5">
           <div class="w-full max-w-[360px] rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-zinc-200">
             <p class="text-center text-base font-bold text-zinc-900">상품이 장바구니에 담겼어요</p>
@@ -908,9 +951,34 @@
           </div>
         </div>
 
-        <div id="checkout-complete-modal" class="fixed inset-0 z-[93] hidden items-center justify-center bg-black/35 backdrop-blur-md p-5">
-          <div class="w-full max-w-[420px] rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-zinc-200">
-            <p id="checkout-complete-message" class="text-center text-base font-bold text-zinc-900"></p>
+        <div
+          id="checkout-complete-modal"
+          class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/50 p-5"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="checkout-complete-message"
+        >
+          <div class="w-full max-w-[420px] rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-gray-200 [font-family:Inter,_sans-serif]">
+            <p
+              id="checkout-complete-message"
+              class="whitespace-pre-line text-center text-base leading-relaxed text-gray-800"
+            ></p>
+            <div class="mt-6 flex gap-3">
+              <button
+                id="checkout-complete-yes"
+                type="button"
+                class="flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
+              >
+                예
+              </button>
+              <button
+                id="checkout-complete-no"
+                type="button"
+                class="flex-1 rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98] [font-family:Inter,_sans-serif]"
+              >
+                아니오
+              </button>
+            </div>
           </div>
         </div>
 
@@ -930,9 +998,6 @@
       const pages = Array.from(document.querySelectorAll("[data-page]"));
       const navButtons = Array.from(document.querySelectorAll("[data-nav-target]"));
       const backButtons = Array.from(document.querySelectorAll("[data-back-target]"));
-      const homeRollingBanner = document.getElementById("home-rolling-banner");
-      const homeRollingTrack = document.getElementById("home-rolling-track");
-      const homeRollingIndicator = document.getElementById("home-rolling-indicator");
       const productListPage = document.getElementById("page-product-list");
       const detailImage = document.getElementById("detail-image");
       const detailPurchaseButton = document.getElementById("detail-purchase-button");
@@ -954,11 +1019,17 @@
       const welcomeModal = document.getElementById("welcome-modal");
       const welcomeNicknameInput = document.getElementById("welcome-nickname-input");
       const welcomeStartButton = document.getElementById("welcome-start-button");
+      const feedbackSurveyModal = document.getElementById("feedback-survey-modal");
+      const feedbackSurveyTitle = document.getElementById("feedback-survey-title");
+      const feedbackSurveyYes = document.getElementById("feedback-survey-yes");
+      const feedbackSurveyNo = document.getElementById("feedback-survey-no");
       const addToCartModal = document.getElementById("add-to-cart-modal");
       const addToCartMoreButton = document.getElementById("add-to-cart-more");
       const addToCartGoCartButton = document.getElementById("add-to-cart-go-cart");
       const checkoutCompleteModal = document.getElementById("checkout-complete-modal");
       const checkoutCompleteMessage = document.getElementById("checkout-complete-message");
+      const checkoutCompleteYes = document.getElementById("checkout-complete-yes");
+      const checkoutCompleteNo = document.getElementById("checkout-complete-no");
       const globalTopBar = document.getElementById("global-top-bar");
       const topbarTitle = document.getElementById("topbar-title");
       const topbarBack = document.getElementById("topbar-back");
@@ -967,6 +1038,9 @@
       const topbarCartCount = document.getElementById("topbar-cart-count");
       const homeBgHotspotCoupon = document.getElementById("home-bg-hotspot-coupon");
       const homeBgHotspotCart = document.getElementById("home-bg-hotspot-cart");
+      const homeRollingBanner = document.getElementById("home-rolling-banner");
+      const homeRollingTrack = document.getElementById("home-rolling-track");
+      const homeRollingIndicator = document.getElementById("home-rolling-indicator");
 
       const pageTitles = {
         home: "홈",
@@ -995,17 +1069,17 @@
         "14": { id: "14", name: "하림)치킨왕라면", price: 1800, img: "./assets/14.svg", category: "라면/간편식" },
         "15": { id: "15", name: "햄)빅피자버거1", price: 3500, img: "./assets/15.svg", category: "라면/간편식" },
         "16": { id: "16", name: "농심)신라면골드봉지", price: 1500, img: "./assets/16.svg", category: "라면/간편식" },
-        "17": { id: "17", name: "연세)초코생크림빵", price: 3000, img: "./design/cart_prod_17.jpg", category: "Dessert / Bakery" },
-        "18": { id: "18", name: "연세)말차초코크림빵", price: 3600, img: "./design/cart_prod_18.jpg", category: "Dessert / Bakery" },
-        "19": { id: "19", name: "연세)메론생크림빵", price: 3200, img: "./design/cart_prod_19.jpg", category: "Dessert / Bakery" },
-        "20": { id: "20", name: "유앤)돈시몬오렌지주스200", price: 2500, img: "./design/cart_prod_20.jpg", category: "프로모션" },
-        "21": { id: "21", name: "랩노쉬)N프로틴바나나P350", price: 3800, img: "./design/cart_prod_21.jpg", category: "프로모션" },
-        "22": { id: "22", name: "동원)가나디초코우유500ml", price: 2200, img: "./design/cart_prod_22.jpg", category: "프로모션" },
-        "23": { id: "23", name: "링티)제로복숭아P500ml", price: 2900, img: "./design/cart_prod_23.jpg", category: "프로모션" },
-        "24": { id: "24", name: "샐)고구마단호박샐러드", price: 4900, img: "./design/cart_prod_24.jpg", category: "프로모션" },
-        "25": { id: "25", name: "샌)호밀햄반숙란샌드", price: 4000, img: "./design/cart_prod_25.jpg", category: "프로모션" },
-        "26": { id: "26", name: "도)밥반찬반돈까스", price: 5500, img: "./design/cart_prod_26.jpg", category: "프로모션" },
-        "27": { id: "27", name: "겟모닝)햄청양한입꼬마", price: 3300, img: "./design/cart_prod_27.jpg", category: "프로모션" },
+        "17": { id: "17", name: "연세)초코생크림빵", price: 3000, img: "./design/cart_prod_17.jpg", category: "디저트/빵" },
+        "18": { id: "18", name: "연세)말차초코크림빵", price: 3600, img: "./design/cart_prod_18.jpg", category: "디저트/빵" },
+        "19": { id: "19", name: "연세)메론생크림빵", price: 3200, img: "./design/cart_prod_19.jpg", category: "디저트/빵" },
+        "20": { id: "20", name: "유앤)돈시몬오렌지주스200", price: 2500, img: "./design/cart_prod_20.jpg", category: "음료" },
+        "21": { id: "21", name: "랩노쉬)N프로틴바나나P350", price: 3800, img: "./design/cart_prod_21.jpg", category: "음료" },
+        "22": { id: "22", name: "동원)가나디초코우유500ml", price: 2200, img: "./design/cart_prod_22.jpg", category: "음료" },
+        "23": { id: "23", name: "링티)제로복숭아P500ml", price: 2900, img: "./design/cart_prod_23.jpg", category: "음료" },
+        "24": { id: "24", name: "샐)고구마단호박샐러드", price: 4900, img: "./design/cart_prod_24.jpg", category: "도시락/김밥" },
+        "25": { id: "25", name: "샌)호밀햄반숙란샌드", price: 4000, img: "./design/cart_prod_25.jpg", category: "라면/간편식" },
+        "26": { id: "26", name: "도)밥반찬반돈까스", price: 5500, img: "./design/cart_prod_26.jpg", category: "도시락/김밥" },
+        "27": { id: "27", name: "겟모닝)햄청양한입꼬마", price: 3300, img: "./design/cart_prod_27.jpg", category: "도시락/김밥" },
       };
       const coupons = [
         { id: "cp-1", title: "신규회원 웰컴 쿠폰", discountRate: 7, expiryDate: "2026-05-31", condition: "5,000원 이상 구매 시" },
@@ -1026,6 +1100,7 @@
       let checkoutCompleteTimer = null;
       let eventCouponTimer = null;
       let eventCartToastTimer = null;
+      let feedbackSurveyTimer = null;
       let eventCouponIssued = window.sessionStorage.getItem("eventCouponIssued") === "1";
       let rollingSlideIndex = 0;
       let rollingSlideTimer = null;
@@ -1143,19 +1218,82 @@
         welcomeModal.classList.remove("flex");
       }
 
+      function clearFeedbackSurveyTimer() {
+        if (feedbackSurveyTimer == null) return;
+        window.clearTimeout(feedbackSurveyTimer);
+        feedbackSurveyTimer = null;
+      }
+
+      function scheduleFeedbackSurvey() {
+        if (window.sessionStorage.getItem("ampmFeedbackSurveyShown") === "1") return;
+        clearFeedbackSurveyTimer();
+        feedbackSurveyTimer = window.setTimeout(() => {
+          feedbackSurveyTimer = null;
+          if (window.sessionStorage.getItem("ampmFeedbackSurveyShown") === "1") return;
+          showFeedbackSurveyModal();
+        }, 50000);
+      }
+
+      function showFeedbackSurveyModal() {
+        if (!feedbackSurveyModal || !feedbackSurveyTitle) return;
+        if (window.sessionStorage.getItem("ampmFeedbackSurveyShown") === "1") return;
+        feedbackSurveyTitle.textContent = getFeedbackSurveyCopy();
+        feedbackSurveyModal.classList.remove("hidden");
+        feedbackSurveyModal.classList.add("flex");
+      }
+
+      function hideFeedbackSurveyModal() {
+        if (!feedbackSurveyModal) return;
+        feedbackSurveyModal.classList.add("hidden");
+        feedbackSurveyModal.classList.remove("flex");
+      }
+
+      function dismissFeedbackSurvey() {
+        window.sessionStorage.setItem("ampmFeedbackSurveyShown", "1");
+        clearFeedbackSurveyTimer();
+        hideFeedbackSurveyModal();
+      }
+
       function saveNickname() {
         const entered = welcomeNicknameInput?.value?.trim().slice(0, 10) || "";
         userNickname = entered || "손님";
         window.sessionStorage.setItem("ampmUserNickname", userNickname);
         hideWelcomeModal();
         updateHomeSnackBannerNickname();
+        scheduleFeedbackSurvey();
+      }
+
+      const KOREAN_WEEKDAY_SHORT = ["일", "월", "화", "수", "목", "금", "토"];
+
+      function formatConsumptionReportDate(date) {
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const dow = KOREAN_WEEKDAY_SHORT[date.getDay()];
+        return `${month}.${day}(${dow})`;
+      }
+
+      function getConsumptionReportDateRangeLabel(referenceDate = new Date()) {
+        const y = referenceDate.getFullYear();
+        const mo = referenceDate.getMonth();
+        const d = referenceDate.getDate();
+        const end = new Date(y, mo, d - 1);
+        const start = new Date(end.getFullYear(), end.getMonth(), end.getDate() - 6);
+        return `${formatConsumptionReportDate(start)} ~ ${formatConsumptionReportDate(end)} 기준`;
+      }
+
+      function updateHomeConsumptionReportOverlay() {
+        const nickEl = document.getElementById("home-consumption-overlay-nick");
+        const rangeEl = document.getElementById("home-consumption-overlay-range");
+        const nick = (userNickname || "손님").trim();
+        if (nickEl) nickEl.textContent = nick;
+        if (rangeEl) rangeEl.textContent = getConsumptionReportDateRangeLabel();
       }
 
       function updateHomeSnackBannerNickname() {
-        const el = document.getElementById("home-snack-nick-only");
-        if (!el) return;
         const nick = (userNickname || "손님").trim();
-        el.textContent = nick;
+        const el = document.getElementById("home-snack-nick-only");
+        if (el) el.textContent = nick;
+        updateHomeConsumptionReportOverlay();
       }
 
       function setCouponNotification(visible) {
@@ -1182,10 +1320,11 @@
         }, 1000);
       }
 
-      function showEventCouponModal() {
+      function showEventCouponModal(message) {
         if (!eventCouponModal || !eventCouponMessage) return;
         const safeNick = userNickname || "손님";
-        eventCouponMessage.textContent = `${safeNick}님, 이벤트 쿠폰이 발급되었습니다! 🧁`;
+        eventCouponMessage.textContent =
+          message || `${safeNick}님, 이벤트 쿠폰이 발급되었습니다! 🧁`;
         eventCouponModal.classList.remove("hidden");
         eventCouponModal.classList.add("flex");
         if (eventCouponTimer) {
@@ -1199,7 +1338,11 @@
       }
 
       function issueEventCouponOnce() {
-        if (eventCouponIssued) return;
+        const safeNick = userNickname || "손님";
+        if (eventCouponIssued) {
+          showEventCouponModal(`${safeNick}님, 이미 받으신 이벤트 쿠폰이에요. MyCU에서 확인해주세요!`);
+          return;
+        }
         const existing = coupons.find((coupon) => coupon.id === "cp-event-dessert-20");
         if (!existing) {
           const expiryDate = new Date();
@@ -1217,9 +1360,7 @@
         eventCouponIssued = true;
         window.sessionStorage.setItem("eventCouponIssued", "1");
         if (eventCouponHotspot) {
-          eventCouponHotspot.disabled = true;
-          eventCouponHotspot.setAttribute("aria-label", "이벤트 쿠폰 발급 완료");
-          eventCouponHotspot.classList.add("cursor-default");
+          eventCouponHotspot.setAttribute("aria-label", "이벤트 쿠폰 발급 완료 (안내 다시 보기)");
         }
         setCouponNotification(true);
         renderCoupons();
@@ -1254,12 +1395,35 @@
         addToCartModal.classList.remove("flex");
       }
 
+      function getFeedbackSurveyCopy() {
+        const nick = (userNickname || "손님").trim();
+        return `${nick} 님의 구매 여정을 함께 한 
+2U의 개인화 서비스 어떠셨나요?
+재방문할 의사가 있으신가요?`;
+      }
+
       function showCheckoutCompleteModal() {
         if (!checkoutCompleteModal || !checkoutCompleteMessage) return;
-        const safeNick = userNickname || "손님";
-        checkoutCompleteMessage.innerHTML = `${safeNick}님 이용해주셔서 감사합니다😊`;
+        checkoutCompleteMessage.textContent = getFeedbackSurveyCopy();
         checkoutCompleteModal.classList.remove("hidden");
         checkoutCompleteModal.classList.add("flex");
+      }
+
+      function finalizeCheckoutFromModal() {
+        if (checkoutCompleteTimer) {
+          window.clearTimeout(checkoutCompleteTimer);
+          checkoutCompleteTimer = null;
+        }
+        hideCheckoutCompleteModal();
+        cart.splice(0, cart.length);
+        const welcomeOnly = coupons.filter((c) => isGlobalCoupon(c));
+        coupons.splice(0, coupons.length, ...welcomeOnly);
+        selectedCoupon = null;
+        cartCouponDropdownOpen = false;
+        renderCart();
+        renderCoupons();
+        updateTopbarCartCount();
+        showPage("home");
       }
 
       function hideCheckoutCompleteModal() {
@@ -1407,8 +1571,8 @@
                         const couponDetailLine =
                           typeof coupon.discountRate === "number"
                             ? categoryLabel
-                              ? `${categoryLabel} ${coupon.discountRate}% & 할인`
-                              : `${coupon.discountRate}% & 할인`
+                              ? `${categoryLabel} ${coupon.discountRate}% 할인`
+                              : `${coupon.discountRate}% 할인`
                             : couponDiscountText;
                         return `
                           <button
@@ -1521,12 +1685,12 @@
                 if (coupon.autoIssued) {
                   line1 = `${nick} 전용 쿠폰`;
                   if (categoryLabel && rate !== null) {
-                    line2 = `${categoryLabel} ${rate}% & 할인`;
+                    line2 = `${categoryLabel} ${rate}% 할인`;
                   } else if (rate !== null) {
-                    line2 = `${rate}% & 할인`;
+                    line2 = `${rate}% 할인`;
                   }
                 } else if (rate !== null) {
-                  line2 = categoryLabel ? `${categoryLabel} ${rate}% & 할인` : `${rate}% & 할인`;
+                  line2 = categoryLabel ? `${categoryLabel} ${rate}% 할인` : `${rate}% 할인`;
                 }
                 return `
                   <article class="rounded-xl bg-white p-4 shadow-sm ring-1 ring-zinc-200">
@@ -1619,6 +1783,9 @@
           setCouponNotification(false);
           renderCoupons();
         }
+        if (pageKey === "home") {
+          updateHomeConsumptionReportOverlay();
+        }
       }
 
       navButtons.forEach((button) => {
@@ -1705,19 +1872,6 @@
 
           if (action === "checkout") {
             showCheckoutCompleteModal();
-            if (checkoutCompleteTimer) {
-              window.clearTimeout(checkoutCompleteTimer);
-            }
-            checkoutCompleteTimer = window.setTimeout(() => {
-              hideCheckoutCompleteModal();
-              cart.splice(0, cart.length);
-              selectedCoupon = null;
-              cartCouponDropdownOpen = false;
-              renderCart();
-              updateTopbarCartCount();
-              showPage("home");
-              checkoutCompleteTimer = null;
-            }, 4000);
             return;
           }
           if (!productId) return;
@@ -1736,34 +1890,21 @@
       }
 
       if (eventCouponHotspot) {
+        eventCouponHotspot.classList.add("cursor-pointer");
         if (eventCouponIssued) {
-          eventCouponHotspot.disabled = true;
-          eventCouponHotspot.setAttribute("aria-label", "이벤트 쿠폰 발급 완료");
-          eventCouponHotspot.classList.add("cursor-default");
-        } else {
-          eventCouponHotspot.classList.add("cursor-pointer");
+          eventCouponHotspot.setAttribute("aria-label", "이벤트 쿠폰 발급 완료 (안내 다시 보기)");
         }
-        eventCouponHotspot.addEventListener("click", () => {
+        eventCouponHotspot.addEventListener("click", (e) => {
+          e.stopPropagation();
           issueEventCouponOnce();
         });
       }
 
       if (eventPage) {
         eventPage.addEventListener("click", (e) => {
-          const productBtn = e.target.closest("[data-event-product-id]");
-          if (productBtn) {
-            const productId = productBtn.dataset.eventProductId;
-            if (!productId) return;
-            if (productId === "17" || productId === "18" || productId === "19") {
-              window.alert("본 상품은 이벤트 전용 상품으로 상세 페이지가 준비 중입니다.");
-              return;
-            }
-            showDetail(productId);
-            return;
-          }
-
           const cartBtn = e.target.closest("[data-event-cart-id]");
           if (!cartBtn) return;
+          e.stopPropagation();
           const productId = cartBtn.dataset.eventCartId;
           if (!productId) return;
           addToCart(productId);
@@ -1916,6 +2057,30 @@
         });
       }
 
+      if (feedbackSurveyYes) {
+        feedbackSurveyYes.addEventListener("click", () => {
+          dismissFeedbackSurvey();
+        });
+      }
+
+      if (feedbackSurveyNo) {
+        feedbackSurveyNo.addEventListener("click", () => {
+          dismissFeedbackSurvey();
+        });
+      }
+
+      if (checkoutCompleteYes) {
+        checkoutCompleteYes.addEventListener("click", () => {
+          finalizeCheckoutFromModal();
+        });
+      }
+
+      if (checkoutCompleteNo) {
+        checkoutCompleteNo.addEventListener("click", () => {
+          finalizeCheckoutFromModal();
+        });
+      }
+
       if (homeRollingBanner) {
         homeRollingBanner.addEventListener("click", () => {
           const currentDisplayIndex = ((rollingSlideIndex % rollingSlideCount) + rollingSlideCount) % rollingSlideCount;
@@ -1933,6 +2098,10 @@
       userNickname = savedNickname?.trim().slice(0, 10) || "";
       if (!userNickname) {
         showWelcomeModal();
+      }
+
+      if (userNickname) {
+        scheduleFeedbackSurvey();
       }
 
       setupRollingBannerLoop();
