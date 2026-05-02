@@ -1716,6 +1716,9 @@
                   : coupon.autoIssued
                     ? ' id="btn-coupon-personalized"'
                     : "";
+                const couponReceiveButtonText = coupon.autoIssued
+                  ? "받기."
+                  : "받기";
                 return `
                   <article class="rounded-xl bg-white p-4 shadow-sm ring-1 ring-zinc-200">
                     <div class="flex items-start justify-between gap-3">
@@ -1737,7 +1740,7 @@
                         data-coupon-action="download"
                         data-coupon-id="${coupon.id}"
                       >
-                        받기
+                        ${couponReceiveButtonText}
                       </button>
                     </div>
                   </article>
