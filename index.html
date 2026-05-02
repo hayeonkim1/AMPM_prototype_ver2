@@ -1711,14 +1711,18 @@
                 } else if (rate !== null) {
                   line2 = categoryLabel ? `${categoryLabel} ${rate}% 할인` : `${rate}% 할인`;
                 }
-                const couponReceiveButtonId = isGlobalCoupon(coupon)
-                  ? ' id="btn-coupon-welcome"'
-                  : coupon.autoIssued
-                    ? ' id="btn-coupon-personalized"'
-                    : "";
-                const couponReceiveButtonText = coupon.autoIssued
-                  ? "받기."
-                  : "받기";
+                let couponReceiveButtonId = "";
+                let couponReceiveButtonText = "받기";
+                if (isGlobalCoupon(coupon)) {
+                  couponReceiveButtonId = ' id="btn-coupon-welcome"';
+                  couponReceiveButtonText = "웰컴 쿠폰 받기";
+                } else if (coupon.autoIssued) {
+                  couponReceiveButtonId = ' id="btn-coupon-personalized"';
+                  couponReceiveButtonText = "전용 쿠폰 받기";
+                } else if (coupon.eventIssued) {
+                  couponReceiveButtonId = ' id="btn-coupon-event"';
+                  couponReceiveButtonText = "이벤트 쿠폰 받기";
+                }
                 return `
                   <article class="rounded-xl bg-white p-4 shadow-sm ring-1 ring-zinc-200">
                     <div class="flex items-start justify-between gap-3">
@@ -1736,7 +1740,7 @@
                       </div>
                       <button${couponReceiveButtonId}
                         type="button"
-                        class="shrink-0 rounded-lg bg-violet-600 px-3 py-2 text-xs font-semibold text-white"
+                        class="shrink-0 inline-flex min-w-[110px] items-center justify-center rounded-lg bg-[#6A2CED] px-3 py-2 text-center text-xs font-semibold text-white"
                         data-coupon-action="download"
                         data-coupon-id="${coupon.id}"
                       >
