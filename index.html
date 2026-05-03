@@ -1852,6 +1852,13 @@
         return coupon.title === "신규회원 웰컴 쿠폰";
       }
 
+      /** GA4/GTM: 장바구니 쿠폰 행 구분 — autoIssued(카테고리 전용 4종) vs 웰컴·이벤트(2종) */
+      function getCouponDataTypeForGtm(coupon) {
+        if (!coupon) return "basic";
+        if (coupon.autoIssued) return "personalized";
+        return "basic";
+      }
+
       function isCouponApplicableToCart(coupon, cartItems) {
         if (!coupon || cartItems.length === 0) return false;
         if (isGlobalCoupon(coupon)) return true;
@@ -2298,6 +2305,7 @@
                             type="button"
                             data-coupon-action="select-coupon"
                             data-coupon-id="${coupon.id}"
+                            data-coupon-type="${getCouponDataTypeForGtm(coupon)}"
                             ${canUse ? "" : "disabled"}
                             class="w-full rounded-lg border px-3 py-2 text-left text-xs ${
                               canUse
@@ -2305,8 +2313,8 @@
                                 : "border-zinc-200 bg-zinc-100 text-zinc-400"
                             }"
                           >
-                            <p class="font-semibold">${coupon.title}</p>
-                            <p class="mt-1">${couponDetailLine}</p>
+                            <p class="pointer-events-none font-semibold">${coupon.title}</p>
+                            <p class="pointer-events-none mt-1">${couponDetailLine}</p>
                           </button>
                         `;
                       })
