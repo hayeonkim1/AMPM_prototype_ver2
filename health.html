@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMPM 건강기능식품</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-icon-sprite {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .img-placeholder {
+        background: linear-gradient(to bottom right, #f4f4f5 0%, #e4e4e7 50%, #f4f4f5 100%);
+      }
+
+      [data-product-image-slot] {
+        background: #fafafa;
+      }
+
+      [data-product-image-slot] img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .health-section-title {
+        color: #000000;
+      }
+
+      .health-product-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        text-align: left;
+      }
+
+      /* 110px 카드 (이달의 행사 / NOW 핫이슈): product info 50px, 이름↔가격 4px */
+      .health-product-info--lg {
+        min-height: 50px;
+        gap: 4px;
+      }
+
+      .health-product-name--lg {
+        color: #000000;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.94318199157715px;
+        text-align: left;
+        white-space: pre-line;
+      }
+
+      .health-product-price--lg {
+        color: #000000;
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 12.102272033691406px;
+        text-align: left;
+      }
+
+      /* 88px 카드 (이 상품 어때요): product info 46px, 이름↔가격 4px */
+      .health-product-info--sm {
+        min-height: 46px;
+        gap: 4px;
+      }
+
+      .health-product-name--sm {
+        color: #000000;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.522727012634277px;
+        text-align: left;
+        white-space: pre-line;
+      }
+
+      .health-product-price--sm {
+        color: #000000;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 12.102272033691406px;
+        text-align: left;
+      }
+
+      /* 이번주 인기 가로형: product info 47px, 이름↔가격 5px */
+      .health-product-info--weekly {
+        min-height: 47px;
+        gap: 5px;
+      }
+
+      .health-product-name--weekly {
+        color: #000000;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.522727012634277px;
+        text-align: left;
+        white-space: pre-line;
+      }
+
+      .health-product-price--weekly {
+        color: #000000;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 12.102272033691406px;
+        text-align: left;
+      }
+
+      /* 이미지 ↔ 하단 영역: 110px 카드 8px, 88px 카드 4px */
+      .health-card-bottom--lg {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin-top: 8px;
+        gap: 10px;
+      }
+
+      .health-card-bottom--sm {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin-top: 4px;
+        gap: 5px;
+      }
+
+      .health-badge {
+        background-color: #a7c503;
+        color: #ffffff;
+        border-radius: 22px;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 12px;
+      }
+
+      .health-cart-btn {
+        background-color: #52789a;
+        color: #ffffff;
+        font-weight: 700;
+        border-radius: 20px;
+      }
+
+    </style>
+  </head>
+  <body class="min-h-screen bg-zinc-200 p-4 md:p-8">
+    <main class="mx-auto h-[960px] w-[460px] overflow-hidden rounded-[44px] border border-zinc-300 bg-white shadow-2xl">
+      <div id="app" class="relative flex h-full w-full flex-col">
+        <div class="relative min-h-0 flex-1 overflow-hidden">
+          <!-- Figma: health_wireframe 402×1492 (4.EventPage / y9ajr7on) -->
+          <section
+            id="page-health"
+            data-page
+            class="hide-scrollbar relative h-full overflow-y-auto bg-white pb-[96px] pt-[110px]"
+            aria-label="건강기능식품"
+          >
+            <div class="mx-auto w-[402px]">
+              <!-- 01_top_banner 371×196 -->
+              <section class="px-[15px]" aria-labelledby="health-top-banner">
+                <div
+                  id="health-top-banner"
+                  class="img-placeholder relative flex h-[196px] w-[371px] items-end justify-center overflow-hidden rounded-sm"
+                >
+                  <p class="mb-4 text-lg text-[#bfbfbf]">메인 카피</p>
+                </div>
+              </section>
+
+              <!-- 02_body -->
+              <div class="px-0">
+                <!-- 01 Monthly_promotion -->
+                <section class="mt-5" aria-labelledby="monthly-promo-title">
+                  <header class="flex h-[42px] w-[402px] items-center justify-center">
+                    <h2 id="monthly-promo-title" class="health-section-title text-lg font-bold">이달의 행사 상품</h2>
+                  </header>
+                  <div class="mx-auto mt-1 flex w-[357px] justify-between">
+                    <article class="w-[110px] shrink-0">
+                      <div data-product-image-slot class="relative flex h-[110px] w-full items-center justify-center overflow-hidden rounded-sm">
+                        <span class="health-badge absolute left-1 top-1 z-[1] px-2 py-0.5">할인</span>
+                      </div>
+                      <div class="health-card-bottom--lg">
+                        <div class="health-product-info health-product-info--lg">
+                          <p class="health-product-name--lg">동아)눈호강&#10;10정</p>
+                          <p class="health-product-price--lg">5,000원</p>
+                        </div>
+                        <button type="button" data-health-cart="1" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
+                      </div>
+                    </article>
+                    <article class="w-[111px] shrink-0">
+                      <div data-product-image-slot class="relative flex h-[110px] w-full items-center justify-center overflow-hidden rounded-sm">
+                        <span class="health-badge absolute left-1 top-1 z-[1] px-2 py-0.5">1+1</span>
+                      </div>
+                      <div class="health-card-bottom--lg">
+                        <div class="health-product-info health-product-info--lg">
+                          <p class="health-product-name--lg">종근당)장건강&#10;10정 1+1</p>
+                          <p class="health-product-price--lg">5,000원</p>
+                        </div>
+                        <button type="button" data-health-cart="2" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
+                      </div>
+                    </article>
+                    <article class="w-[110px] shrink-0">
+                      <div data-product-image-slot class="relative flex h-[110px] w-full items-center justify-center overflow-hidden rounded-sm">
+                        <span class="health-badge absolute left-1 top-1 z-[1] px-2 py-0.5">2+1</span>
+                      </div>
+                      <div class="health-card-bottom--lg">
+                        <div class="health-product-info health-product-info--lg">
+                          <p class="health-product-name--lg">대웅)임팩타임&#10;에너지젤45g 2+1</p>
+                          <p class="health-product-price--lg">3,500원</p>
+                        </div>
+                        <button type="button" data-health-cart="3" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <!-- 02 Now_hot_issue -->
+                <section class="mt-[22px]" aria-labelledby="hot-issue-title">
+                  <header class="flex h-[42px] w-[402px] items-center justify-center">
+                    <h2 id="hot-issue-title" class="health-section-title text-lg font-bold">NOW Hot Issue</h2>
+                  </header>
+                  <div class="mx-auto mt-1 flex w-[356px] justify-between">
+                    <article class="w-[110px] shrink-0">
+                      <div data-product-image-slot class="flex h-[110px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                      <div class="health-card-bottom--lg">
+                        <div class="health-product-info health-product-info--lg">
+                          <p class="health-product-name--lg">종건)아임비타&#10;비타민젤리</p>
+                          <p class="health-product-price--lg">2,800원</p>
+                        </div>
+                        <button type="button" data-health-cart="4" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
+                      </div>
+                    </article>
+                    <article class="w-[110px] shrink-0">
+                      <div data-product-image-slot class="flex h-[110px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                      <div class="health-card-bottom--lg">
+                        <div class="health-product-info health-product-info--lg">
+                          <p class="health-product-name--lg">동아)아일로카무트&#10;효소3g</p>
+                          <p class="health-product-price--lg">1,500원</p>
+                        </div>
+                        <button type="button" data-health-cart="5" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
+                      </div>
+                    </article>
+                    <article class="w-[110px] shrink-0">
+                      <div data-product-image-slot class="flex h-[110px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                      <div class="health-card-bottom--lg">
+                        <div class="health-product-info health-product-info--lg">
+                          <p class="health-product-name--lg">종근당)아미코어&#10;프로틴샷</p>
+                          <p class="health-product-price--lg">4,500원</p>
+                        </div>
+                        <button type="button" data-health-cart="6" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <!-- 03 Weekly_popular -->
+                <section class="mt-[22px]" aria-labelledby="weekly-popular-title">
+                  <header class="flex h-[42px] w-[402px] items-center justify-center">
+                    <h2 id="weekly-popular-title" class="health-section-title text-lg font-bold">Weekly Best</h2>
+                  </header>
+                  <div class="mx-auto mt-1 flex w-[349px] justify-between">
+                    <article class="flex w-[163px] shrink-0 gap-2">
+                      <div data-product-image-slot class="flex h-[74px] w-[74px] shrink-0 items-center justify-center overflow-hidden rounded-sm"></div>
+                      <div class="flex h-[77px] min-w-0 flex-1 flex-col justify-between">
+                        <div class="health-product-info health-product-info--weekly">
+                          <p class="health-product-name--weekly">동아)혈행의&#10;선순환10정</p>
+                          <p class="health-product-price--weekly">5,000원</p>
+                        </div>
+                        <button type="button" data-health-cart="7" class="health-cart-btn h-6 w-[78px] shrink-0 text-left text-[10px] pl-2">장바구니 담기</button>
+                      </div>
+                    </article>
+                    <article class="flex w-[181px] shrink-0 gap-2">
+                      <div data-product-image-slot class="flex h-[74px] w-[74px] shrink-0 items-center justify-center overflow-hidden rounded-sm"></div>
+                      <div class="flex h-[77px] min-w-0 flex-1 flex-col justify-between">
+                        <div class="health-product-info health-product-info--weekly">
+                          <p class="health-product-name--weekly">종근당)이너케어&#10;10정</p>
+                          <p class="health-product-price--weekly">5,000원</p>
+                        </div>
+                        <button type="button" data-health-cart="8" class="health-cart-btn h-6 w-[78px] shrink-0 text-left text-[10px] pl-2">장바구니 담기</button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <!-- 04 Other products -->
+                <section class="mt-9" aria-labelledby="other-products-title">
+                  <header class="flex h-[42px] w-[402px] items-center justify-center">
+                    <h2 id="other-products-title" class="health-section-title text-lg font-bold">이 상품 어때요?</h2>
+                  </header>
+                  <div class="mx-auto w-[373px] space-y-5">
+                    <div class="flex justify-between">
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">동아)육식파키위&#10;효소3g</p>
+                            <p class="health-product-price--sm">2,000원</p>
+                          </div>
+                          <button type="button" data-health-cart="9" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">NHC)그에너지&#10;부스터20g</p>
+                            <p class="health-product-price--sm">3,000원</p>
+                          </div>
+                          <button type="button" data-health-cart="10" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">CJ)하루한알비오&#10;틴구미</p>
+                            <p class="health-product-price--sm">3,900원</p>
+                          </div>
+                          <button type="button" data-health-cart="11" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">종근당)혈행건강&#10;10정</p>
+                            <p class="health-product-price--sm">5,000원</p>
+                          </div>
+                          <button type="button" data-health-cart="12" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                    </div>
+                    <div id="other-products-container-02" class="flex justify-between">
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">동아)에너지&#10;10정</p>
+                            <p class="health-product-price--sm">5,000원</p>
+                          </div>
+                          <button type="button" data-health-cart="13" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">한미)텐텐맛멀티&#10;비타민4입</p>
+                            <p class="health-product-price--sm">2,500원</p>
+                          </div>
+                          <button type="button" data-health-cart="14" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">CJ)하루한알&#10;비타민D아연</p>
+                            <p class="health-product-price--sm">3,900원</p>
+                          </div>
+                          <button type="button" data-health-cart="15" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                      <article class="w-[88px] shrink-0">
+                        <div data-product-image-slot class="flex h-[88px] w-full items-center justify-center overflow-hidden rounded-sm"></div>
+                        <div class="health-card-bottom--sm">
+                          <div class="health-product-info health-product-info--sm">
+                            <p class="health-product-name--sm">RU21)비타민C6정</p>
+                            <p class="health-product-price--sm">5,500원</p>
+                          </div>
+                          <button type="button" data-health-cart="16" class="health-cart-btn h-[25px] w-full text-[10px]">장바구니 담기</button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <!-- 03_bottom_banner 372×90 -->
+              <section class="mt-2 px-[15px] pb-4" aria-labelledby="health-bottom-banner">
+                <div
+                  id="health-bottom-banner"
+                  class="img-placeholder flex h-[90px] w-[372px] items-end justify-center overflow-hidden rounded-sm"
+                >
+                  <p class="mb-3 text-lg text-[#bfbfbf]">서브 카피</p>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section id="page-product-list" data-page class="hide-scrollbar relative hidden h-full overflow-y-auto bg-white pt-[110px]">
+            <img src="./design/2.Product_list_page.jpg" alt="상품목록" class="block h-auto w-full select-none" draggable="false" />
+          </section>
+
+          <section id="page-coupon" data-page class="hide-scrollbar relative hidden h-full overflow-y-auto bg-white pt-[124px]">
+            <img src="./design/5.CouponPage.jpg" alt="My CU" class="block h-auto w-full select-none" draggable="false" />
+          </section>
+
+          <section id="page-cart" data-page class="hide-scrollbar relative hidden h-full overflow-y-auto bg-white pt-[110px]">
+            <img src="./design/6.Cartpage.jpg" alt="장바구니" class="block h-auto w-full select-none" draggable="false" />
+          </section>
+
+          <section id="page-menu" data-page class="hide-scrollbar relative hidden h-full overflow-y-auto bg-white pt-[110px]">
+            <img src="./design/7.Lastpage.jpg" alt="전체보기" class="block h-auto w-full select-none" draggable="false" />
+          </section>
+        </div>
+
+        <!-- 상단 GNB (index.html 동일) -->
+        <header
+          id="global-top-bar"
+          class="absolute inset-x-0 top-[50px] z-[70] flex h-16 items-center justify-between border-b border-gray-100 bg-white px-3 text-base text-gray-900 shadow-sm [font-family:Inter,_sans-serif]"
+        >
+          <div class="relative flex h-full min-w-0 items-center">
+            <button
+              id="topbar-back"
+              type="button"
+              class="h-14 w-7 shrink-0 bg-transparent text-base font-semibold leading-none text-gray-900"
+              aria-label="Back"
+            >
+              &lt;
+            </button>
+            <p id="topbar-title" class="pointer-events-none ml-[5px] truncate text-base font-semibold text-gray-900"></p>
+          </div>
+          <div class="relative flex shrink-0 items-center gap-1.5" aria-label="글로벌 바 아이콘">
+            <div class="relative h-10 w-10 shrink-0">
+              <img
+                src="./design/global_bar_icon_notification.jpg"
+                alt=""
+                aria-hidden="true"
+                class="pointer-events-none absolute left-1/2 top-1/2 h-[25px] w-[25px] -translate-x-1/2 -translate-y-1/2 object-contain select-none"
+                draggable="false"
+                onerror="this.onerror=null;this.src='./assets/bar_icon_notification.svg';"
+              />
+            </div>
+            <div class="relative h-10 w-10 shrink-0">
+              <img
+                src="./design/global_bar_icon_coupon.jpg"
+                alt=""
+                aria-hidden="true"
+                class="pointer-events-none absolute left-1/2 top-1/2 h-[25px] w-[25px] -translate-x-1/2 -translate-y-1/2 object-contain select-none"
+                draggable="false"
+                onerror="this.onerror=null;this.src='./assets/bar_icon_coupon.svg';"
+              />
+              <button id="topbar-coupon" type="button" class="absolute inset-0 z-10 cursor-pointer bg-transparent" aria-label="Coupon"></button>
+            </div>
+            <div class="relative h-10 w-10 shrink-0">
+              <img
+                src="./design/global_bar_icon_cart.jpg"
+                alt=""
+                aria-hidden="true"
+                class="pointer-events-none absolute left-1/2 top-1/2 h-[25px] w-[25px] -translate-x-1/2 -translate-y-1/2 object-contain select-none"
+                draggable="false"
+                onerror="this.onerror=null;this.src='./assets/bar_icon_cart.svg';"
+              />
+              <button id="topbar-cart" type="button" class="absolute inset-0 z-10 cursor-pointer bg-transparent" aria-label="Go to Cart"></button>
+              <span
+                id="topbar-cart-count"
+                class="pointer-events-none absolute right-0 top-0 z-20 hidden min-w-[16px] -translate-y-1/3 translate-x-1/3 rounded-full bg-red-500 px-1 text-center text-[10px] font-bold leading-4 text-white"
+              >0</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- 하단 navigator (index.html 동일) -->
+        <nav class="absolute bottom-0 left-0 right-0 z-50 h-[80px] bg-transparent" aria-label="Bottom tab navigation">
+          <div class="absolute inset-x-0 bottom-0 flex h-[80px] items-center justify-between bg-white px-8 pb-4 pt-2 shadow-[0_-1px_0_rgba(0,0,0,0.06)]">
+            <div class="flex gap-5">
+              <button
+                type="button"
+                data-nav-target="home"
+                class="tab-btn flex w-[66px] flex-col items-center justify-center gap-1.5 text-center text-[12px] font-medium leading-none text-zinc-400"
+              >
+                <span class="relative h-8 w-8 translate-y-[1px] overflow-hidden">
+                  <img src="./assets/Nav_icon_Home.svg" alt="" aria-hidden="true" class="nav-icon-sprite" />
+                </span>
+                <span class="whitespace-nowrap">홈</span>
+              </button>
+              <button
+                type="button"
+                data-nav-target="product-list"
+                class="tab-btn flex w-[66px] flex-col items-center justify-center gap-0.5 text-center text-[12px] font-medium leading-none text-zinc-400"
+              >
+                <span class="relative h-9 w-9 translate-y-[4px] overflow-hidden">
+                  <img src="./assets/Nav_icon_productList_update.svg" alt="" aria-hidden="true" class="nav-icon-sprite" />
+                </span>
+                <span class="whitespace-nowrap">상품목록</span>
+              </button>
+            </div>
+            <div
+              class="absolute left-1/2 -top-6 flex h-[58px] w-[58px] -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#809bfb] via-[#5f73fa] to-[#855ff0] ring-[1.5px] ring-white"
+              aria-hidden="true"
+            >
+              <span class="relative h-[34px] w-[34px] overflow-hidden rounded-full">
+                <img src="./assets/Nav_icon_qrcode.svg" alt="" aria-hidden="true" class="nav-icon-sprite" />
+              </span>
+            </div>
+            <div class="flex gap-5">
+              <button
+                id="nav-coupon-button"
+                type="button"
+                data-nav-target="coupon"
+                class="tab-btn flex w-[66px] flex-col items-center justify-center gap-1.5 text-center text-[12px] font-medium leading-none text-zinc-400"
+              >
+                <span class="relative h-8 w-8 overflow-hidden">
+                  <img src="./assets/Nav_icon_MyCU.svg" alt="" aria-hidden="true" class="nav-icon-sprite" />
+                  <span id="nav-coupon-dot" class="absolute right-0.5 top-0.5 hidden h-2.5 w-2.5 rounded-full bg-red-500"></span>
+                </span>
+                <span class="whitespace-nowrap">My CU</span>
+              </button>
+              <button
+                type="button"
+                data-nav-target="menu"
+                class="tab-btn flex w-[66px] flex-col items-center justify-center gap-1.5 text-center text-[12px] font-medium leading-none text-zinc-400"
+              >
+                <span class="relative h-8 w-8 overflow-hidden">
+                  <img src="./assets/Nav_icon_viewall.svg" alt="" aria-hidden="true" class="nav-icon-sprite" />
+                </span>
+                <span class="whitespace-nowrap">전체보기</span>
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <div id="health-cart-toast" class="pointer-events-none fixed bottom-28 left-1/2 z-[95] hidden -translate-x-1/2 rounded-full bg-black/70 px-4 py-2 text-xs font-medium text-white">
+          장바구니에 담겼습니다!
+        </div>
+      </div>
+    </main>
+
+    <script src="./ampm-shared-cart.js"></script>
+    <script>
+      const pages = Array.from(document.querySelectorAll("[data-page]"));
+      const navButtons = Array.from(document.querySelectorAll("[data-nav-target]"));
+      const globalTopBar = document.getElementById("global-top-bar");
+      const topbarTitle = document.getElementById("topbar-title");
+      const topbarBack = document.getElementById("topbar-back");
+      const topbarCoupon = document.getElementById("topbar-coupon");
+      const topbarCart = document.getElementById("topbar-cart");
+      const topbarCartCount = document.getElementById("topbar-cart-count");
+      const healthCartToast = document.getElementById("health-cart-toast");
+
+      const pageTitles = {
+        health: "건강기능식품",
+        "product-list": "목록",
+        coupon: "My CU",
+        cart: "장바구니",
+        menu: "전체보기",
+      };
+
+      let currentPageKey = "health";
+      let previousPageKey = "health";
+      let cartToastTimer = null;
+
+      function updateTopbarCartCount() {
+        if (!topbarCartCount) return;
+        const count = AmpmCart.getCartCount(AmpmCart.readCart());
+        topbarCartCount.textContent = String(count);
+        topbarCartCount.classList.toggle("hidden", count <= 0);
+      }
+
+      function showHealthCartToast() {
+        if (!healthCartToast) return;
+        healthCartToast.classList.remove("hidden");
+        if (cartToastTimer) window.clearTimeout(cartToastTimer);
+        cartToastTimer = window.setTimeout(() => {
+          healthCartToast.classList.add("hidden");
+          cartToastTimer = null;
+        }, 1000);
+      }
+
+      function showPage(pageKey) {
+        if (pageKey === "cart" && currentPageKey !== "cart") {
+          previousPageKey = currentPageKey;
+        }
+        currentPageKey = pageKey;
+
+        const targetId = `page-${pageKey}`;
+        pages.forEach((page) => {
+          const isTarget = page.id === targetId;
+          page.classList.toggle("hidden", !isTarget);
+          if (isTarget && page.classList.contains("hide-scrollbar")) {
+            page.scrollTo({ top: 0, behavior: "auto" });
+          }
+        });
+
+        navButtons.forEach((button) => {
+          const isActive = button.dataset.navTarget === pageKey;
+          button.classList.toggle("text-black", isActive);
+          button.classList.toggle("text-zinc-400", !isActive);
+        });
+
+        if (topbarTitle) {
+          topbarTitle.textContent = pageTitles[pageKey] || "";
+        }
+        if (globalTopBar) {
+          globalTopBar.classList.remove("hidden");
+          globalTopBar.classList.add("flex");
+        }
+      }
+
+      const healthProductImageExt = {
+        "1": "jpg",
+        "2": "png",
+        "3": "jpg",
+        "4": "jpg",
+        "5": "jpg",
+        "6": "jpg",
+        "7": "jpg",
+        "8": "png",
+        "9": "jpg",
+        "10": "jpg",
+        "11": "jpg",
+        "12": "png",
+        "13": "jpg",
+        "14": "png",
+        "15": "jpg",
+        "16": "png",
+      };
+
+      function getHealthProductImageSrc(productNum) {
+        const ext = healthProductImageExt[String(productNum)];
+        if (!ext) return null;
+        const padded = String(productNum).padStart(2, "0");
+        return `./design/product image/product image ${padded}.${ext}`;
+      }
+
+      function mountHealthProductImages() {
+        document.querySelectorAll("[data-health-cart]").forEach((button) => {
+          const productNum = button.dataset.healthCart;
+          const src = getHealthProductImageSrc(productNum);
+          const article = button.closest("article");
+          const slot = article?.querySelector("[data-product-image-slot]");
+          if (!slot) return;
+
+          if (!src) {
+            slot.classList.add("img-placeholder");
+            return;
+          }
+
+          const nameEl = article.querySelector("p");
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = nameEl?.textContent?.replace(/\s+/g, " ").trim() || "";
+          img.draggable = false;
+          img.className = "h-full w-full p-0.5";
+          img.onerror = () => {
+            img.remove();
+            slot.classList.add("img-placeholder");
+          };
+          slot.appendChild(img);
+        });
+      }
+
+      navButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = button.dataset.navTarget;
+          if (target === "home") {
+            window.location.assign("./index.html?from=health");
+            return;
+          }
+          showPage(target);
+        });
+      });
+
+      if (topbarBack) {
+        topbarBack.addEventListener("click", () => {
+          if (currentPageKey === "health") {
+            window.location.assign("./index.html?from=health");
+            return;
+          }
+          if (currentPageKey === "product-list" || currentPageKey === "menu") {
+            showPage("health");
+            return;
+          }
+          if (currentPageKey === "cart") {
+            showPage(previousPageKey || "health");
+            return;
+          }
+          if (currentPageKey === "coupon") {
+            showPage("health");
+            return;
+          }
+        });
+      }
+
+      function goToIndexPage(pageKey) {
+        AmpmCart.setCartReturnTo("./health.html");
+        window.location.assign(`./index.html?from=health&page=${encodeURIComponent(pageKey)}`);
+      }
+
+      if (topbarCart) {
+        topbarCart.addEventListener("click", () => {
+          goToIndexPage("cart");
+        });
+      }
+
+      if (topbarCoupon) {
+        topbarCoupon.addEventListener("click", () => {
+          goToIndexPage("coupon");
+        });
+      }
+
+      document.querySelectorAll("[data-health-cart]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const productNum = button.dataset.healthCart;
+          if (!productNum) return;
+          AmpmCart.addHealthProduct(productNum);
+          updateTopbarCartCount();
+          showHealthCartToast();
+        });
+      });
+
+      mountHealthProductImages();
+      updateTopbarCartCount();
+      showPage("health");
+    </script>
+  </body>
+</html>

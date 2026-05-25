@@ -971,6 +971,30 @@
         </div>
 
         <div
+          id="checkout-thank-you-modal"
+          class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/50 p-5"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="checkout-thank-you-message"
+        >
+          <div class="w-full max-w-[360px] rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-gray-200 [font-family:Inter,_sans-serif]">
+            <p
+              id="checkout-thank-you-message"
+              class="text-center text-base font-medium leading-relaxed text-gray-800"
+            >
+              이용해주셔서 감사합니다😄
+            </p>
+            <button
+              id="checkout-thank-you-close"
+              type="button"
+              class="mt-6 w-full rounded-xl border border-solid border-gray-300 bg-gray-200 px-3 py-3 text-base font-medium text-gray-800 transition-transform active:scale-[0.98]"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+
+        <div
           id="checkout-complete-modal"
           class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/50 p-5"
           role="dialog"
@@ -1013,7 +1037,19 @@
       </div>
     </main>
 
+    <script src="./ampm-shared-cart.js"></script>
     <script>
+      /**
+       * 재방문 의사 설문 (닉네임 입력 약 50초 후 + 결제 완료 후). true 이면 결제 감사 팝업은 사용하지 않습니다.
+       */
+      const REVISIT_SURVEY_ENABLED = false;
+
+      /**
+       * 결제하기 클릭 시 감사 팝업 (이용해주셔서 감사합니다😄 / 닫기).
+       * REVISIT_SURVEY_ENABLED 가 false 일 때만 적용됩니다. 다시 끄려면 false 로 변경하세요.
+       */
+      const CHECKOUT_THANK_YOU_MODAL_ENABLED = true;
+
       const pages = Array.from(document.querySelectorAll("[data-page]"));
       const navButtons = Array.from(document.querySelectorAll("[data-nav-target]"));
       const backButtons = Array.from(document.querySelectorAll("[data-back-target]"));
@@ -1045,6 +1081,8 @@
       const addToCartModal = document.getElementById("add-to-cart-modal");
       const addToCartMoreButton = document.getElementById("add-to-cart-more");
       const addToCartGoCartButton = document.getElementById("add-to-cart-go-cart");
+      const checkoutThankYouModal = document.getElementById("checkout-thank-you-modal");
+      const checkoutThankYouClose = document.getElementById("checkout-thank-you-close");
       const checkoutCompleteModal = document.getElementById("checkout-complete-modal");
       const checkoutCompleteMessage = document.getElementById("checkout-complete-message");
       const checkoutCompleteYes = document.getElementById("btn-revisit-yes");
@@ -1071,6 +1109,7 @@
         promotion: "프로모션",
         detail: "상세페이지",
       };
+      const healthProducts = AmpmCart.getHealthProductsMap();
       const products = {
         "1": { id: "1", name: "빅삼)태양초고추장참치", price: 1800, img: "./assets/1.svg", category: "도시락/김밥" },
         "2": { id: "2", name: "삼)김치제육삼각", price: 1400, img: "./assets/2.svg", category: "도시락/김밥" },
@@ -1169,8 +1208,18 @@
         });
       }
 
+      function persistCart() {
+        AmpmCart.writeCart(cart);
+      }
+
+      function hydrateCart() {
+        const stored = AmpmCart.readCart();
+        cart.splice(0, cart.length, ...stored);
+      }
+
       function getProduct(productId) {
-        return products[String(productId)] || null;
+        const key = String(productId);
+        return products[key] || healthProducts[key] || null;
       }
 
       function getCouponById(couponId) {
@@ -1207,7 +1256,7 @@
           ? orderAmount
           : cartItems
               .filter((item) => !coupon.category || item.category === coupon.category)
-              .reduce((sum, item) => sum + item.price * item.quantity, 0);
+              .reduce((sum, item) => sum + AmpmCart.getItemLineTotal(item), 0);
 
         if (typeof coupon.discountRate === "number") {
           return Math.floor((eligibleAmount * coupon.discountRate) / 100);
@@ -1244,6 +1293,7 @@
       }
 
       function scheduleFeedbackSurvey() {
+        if (!REVISIT_SURVEY_ENABLED) return;
         if (window.sessionStorage.getItem("ampmFeedbackSurveyShown") === "1") return;
         clearFeedbackSurveyTimer();
         feedbackSurveyTimer = window.setTimeout(() => {
@@ -1254,6 +1304,7 @@
       }
 
       function showFeedbackSurveyModal() {
+        if (!REVISIT_SURVEY_ENABLED) return;
         if (!feedbackSurveyModal || !feedbackSurveyTitle) return;
         if (window.sessionStorage.getItem("ampmFeedbackSurveyShown") === "1") return;
         feedbackSurveyTitle.textContent = getFeedbackSurveyCopy();
@@ -1421,11 +1472,31 @@
 재방문할 의사가 있으신가요?`;
       }
 
+      function showCheckoutThankYouModal() {
+        if (!checkoutThankYouModal) return;
+        checkoutThankYouModal.classList.remove("hidden");
+        checkoutThankYouModal.classList.add("flex");
+      }
+
+      function hideCheckoutThankYouModal() {
+        if (!checkoutThankYouModal) return;
+        checkoutThankYouModal.classList.add("hidden");
+        checkoutThankYouModal.classList.remove("flex");
+      }
+
       function showCheckoutCompleteModal() {
-        if (!checkoutCompleteModal || !checkoutCompleteMessage) return;
-        checkoutCompleteMessage.textContent = getFeedbackSurveyCopy();
-        checkoutCompleteModal.classList.remove("hidden");
-        checkoutCompleteModal.classList.add("flex");
+        if (REVISIT_SURVEY_ENABLED) {
+          if (!checkoutCompleteModal || !checkoutCompleteMessage) return;
+          checkoutCompleteMessage.textContent = getFeedbackSurveyCopy();
+          checkoutCompleteModal.classList.remove("hidden");
+          checkoutCompleteModal.classList.add("flex");
+          return;
+        }
+        if (CHECKOUT_THANK_YOU_MODAL_ENABLED) {
+          showCheckoutThankYouModal();
+          return;
+        }
+        finalizeCheckoutFromModal();
       }
 
       function finalizeCheckoutFromModal() {
@@ -1433,6 +1504,7 @@
           window.clearTimeout(checkoutCompleteTimer);
           checkoutCompleteTimer = null;
         }
+        hideCheckoutThankYouModal();
         hideCheckoutCompleteModal();
         cart.splice(0, cart.length);
         const welcomeOnly = coupons.filter((c) => isGlobalCoupon(c));
@@ -1442,6 +1514,7 @@
         renderCart();
         renderCoupons();
         updateTopbarCartCount();
+        persistCart();
         showPage("home");
       }
 
@@ -1539,12 +1612,13 @@
         }
         renderCart();
         updateTopbarCartCount();
+        persistCart();
       }
 
       function renderCart() {
         if (!cartContent) return;
 
-        const orderAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        const orderAmount = AmpmCart.getOrderAmount(cart);
         const selectedCouponObject = selectedCoupon ? getCouponById(selectedCoupon) : null;
         if (selectedCouponObject && !isCouponApplicableToCart(selectedCouponObject, cart)) {
           selectedCoupon = null;
@@ -1619,7 +1693,7 @@
             ? '<div class="rounded-xl bg-white p-8 text-center text-sm text-zinc-500 shadow-sm ring-1 ring-zinc-200">장바구니가 비어있습니다.</div>'
             : cart
                 .map((item) => {
-                  const subtotal = item.price * item.quantity;
+                  const subtotal = AmpmCart.getItemLineTotal(item);
                   return `
                     <div class="flex items-center gap-3 rounded-xl bg-white p-3 shadow-sm ring-1 ring-zinc-200">
                       <img src="./design/cart_prod_${item.id}.jpg" onerror="this.onerror=null;this.src='${item.img}'" alt="${item.name}" class="h-14 w-14 rounded-lg object-cover bg-zinc-100" draggable="false" />
@@ -1758,12 +1832,15 @@
       function updateCartQuantity(productId, delta) {
         const item = cart.find((entry) => entry.id === String(productId));
         if (!item) return;
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-          const index = cart.findIndex((entry) => entry.id === String(productId));
+        const result = AmpmCart.adjustCartItemQuantity(item, delta);
+        const index = cart.findIndex((entry) => entry.id === String(productId));
+        if (result.remove) {
           if (index > -1) cart.splice(index, 1);
+        } else {
+          item.quantity = result.quantity;
         }
         renderCart();
+        persistCart();
       }
 
       function showPage(pageKey) {
@@ -1976,11 +2053,23 @@
             return;
           }
           if (currentPageKey === "cart") {
+            const cartReturnTo = AmpmCart.getCartReturnTo();
+            if (cartReturnTo) {
+              AmpmCart.clearCartReturnTo();
+              window.location.assign(cartReturnTo);
+              return;
+            }
             showPage(previousPageKey || "product-list");
             return;
           }
           if (currentPageKey === "coupon") {
-            showPage("product-list");
+            const couponReturnTo = AmpmCart.getCartReturnTo();
+            if (couponReturnTo) {
+              AmpmCart.clearCartReturnTo();
+              window.location.assign(couponReturnTo);
+              return;
+            }
+            showPage("home");
             return;
           }
           if (currentPageKey === "menu") {
@@ -2100,6 +2189,20 @@
         });
       }
 
+      if (checkoutThankYouClose) {
+        checkoutThankYouClose.addEventListener("click", () => {
+          finalizeCheckoutFromModal();
+        });
+      }
+
+      if (checkoutThankYouModal) {
+        checkoutThankYouModal.addEventListener("click", (e) => {
+          if (e.target === checkoutThankYouModal) {
+            finalizeCheckoutFromModal();
+          }
+        });
+      }
+
       if (checkoutCompleteYes) {
         checkoutCompleteYes.addEventListener("click", () => {
           finalizeCheckoutFromModal();
@@ -2115,11 +2218,15 @@
       if (homeRollingBanner) {
         homeRollingBanner.addEventListener("click", () => {
           const currentDisplayIndex = ((rollingSlideIndex % rollingSlideCount) + rollingSlideCount) % rollingSlideCount;
-          if (currentDisplayIndex === 0 || currentDisplayIndex === 2) {
-            showPage("event");
+          if (currentDisplayIndex === 0) {
+            window.location.href = "./health.html";
             return;
           }
           if (currentDisplayIndex === 1) {
+            showPage("event");
+            return;
+          }
+          if (currentDisplayIndex === 2) {
             showPage("promotion");
           }
         });
@@ -2135,13 +2242,29 @@
         scheduleFeedbackSurvey();
       }
 
+      const healthEntryParams = new URLSearchParams(window.location.search);
+      const fromHealthEntry = healthEntryParams.get("from") === "health";
+      const healthEntryPage = healthEntryParams.get("page");
+      const healthEntryTargetPage =
+        healthEntryPage === "cart" || healthEntryPage === "coupon" ? healthEntryPage : "home";
+
+      if (fromHealthEntry) {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+
+      hydrateCart();
+
       setupRollingBannerLoop();
       moveRollingBanner(0);
       startRollingBanner();
       updateTopbarCartCount();
       updateHomeSnackBannerNickname();
 
-      showPage("home");
+      showPage(healthEntryTargetPage);
+      if (fromHealthEntry && healthEntryTargetPage === "home") {
+        const homePage = document.getElementById("page-home");
+        homePage?.scrollTo({ top: 0, behavior: "auto" });
+      }
     </script>
   </body>
 </html>
