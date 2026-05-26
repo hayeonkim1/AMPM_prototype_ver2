@@ -194,10 +194,10 @@
             >
               <div
                 id="home-rolling-track"
-                class="flex h-full w-[1444px] transition-transform duration-500 ease-out"
+                class="flex h-full w-[1230px] transition-transform duration-500 ease-out"
               >
                 <img
-                  src="./design/rolling_banner_1.png"
+                  src="./design/rolling_banner_1.jpg"
                   alt="Rolling banner 1"
                   class="h-[280px] w-[410px] shrink-0 object-cover"
                   draggable="false"
@@ -209,13 +209,7 @@
                   draggable="false"
                 />
                 <img
-                  src="./design/rolling_banner_3.png"
-                  alt="Rolling banner 3"
-                  class="h-[280px] w-[410px] shrink-0 object-cover"
-                  draggable="false"
-                />
-                <img
-                  src="./design/rolling_banner_1.png"
+                  src="./design/rolling_banner_1.jpg"
                   alt=""
                   aria-hidden="true"
                   class="h-[280px] w-[410px] shrink-0 object-cover"
@@ -225,7 +219,7 @@
               <span
                 id="home-rolling-indicator"
                 class="pointer-events-none absolute bottom-2 right-2 rounded-md bg-black/50 px-2 py-1 text-[11px] font-medium text-white"
-                >1 / 3</span
+                >1 / 2</span
               >
             </button>
           </section>
@@ -1809,7 +1803,7 @@
         window.sessionStorage.getItem("eventCouponIssued") === "1";
       let rollingSlideIndex = 0;
       let rollingSlideTimer = null;
-      const rollingSlideCount = 3;
+      const rollingSlideCount = 2;
       const rollingSlideWidth = 410;
 
       function formatPrice(value) {
@@ -1824,9 +1818,7 @@
           rollingSlideCount;
         homeRollingIndicator.textContent = `${currentDisplayIndex + 1} / ${rollingSlideCount}`;
         const isClickableSlide =
-          currentDisplayIndex === 0 ||
-          currentDisplayIndex === 1 ||
-          currentDisplayIndex === 2;
+          currentDisplayIndex === 0 || currentDisplayIndex === 1;
         homeRollingBanner.classList.toggle("cursor-pointer", isClickableSlide);
         homeRollingBanner.classList.toggle("cursor-default", !isClickableSlide);
       }
@@ -2387,7 +2379,7 @@
                   const subtotal = AmpmCart.getItemLineTotal(item);
                   return `
                     <div class="flex items-center gap-3 rounded-xl bg-white p-3 shadow-sm ring-1 ring-zinc-200">
-                      <img src="./design/cart_prod_${item.id}.jpg" onerror="this.onerror=null;this.src='${item.img}'" alt="${item.name}" class="h-14 w-14 rounded-lg object-cover bg-zinc-100" draggable="false" />
+                      <img src="${item.img}" alt="${item.name}" class="h-14 w-14 rounded-lg bg-zinc-100 object-contain p-0.5" draggable="false" />
                       <div class="min-w-0 flex-1">
                         <p class="truncate text-sm font-semibold text-zinc-800">${item.name}</p>
                         <p class="text-xs text-zinc-500">${formatPrice(subtotal)}</p>
@@ -2933,10 +2925,6 @@
           }
           if (currentDisplayIndex === 1) {
             showPage("event");
-            return;
-          }
-          if (currentDisplayIndex === 2) {
-            showPage("promotion");
           }
         });
       }
