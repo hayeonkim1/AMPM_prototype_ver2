@@ -34,6 +34,21 @@
         user-select: none;
         pointer-events: none;
       }
+
+      .product-list-page {
+        width: 100%;
+        max-width: 402px;
+        margin: 0 auto;
+      }
+
+      .product-list-category__gradient {
+        background: linear-gradient(
+          135deg,
+          #d5f2ed 25%,
+          rgba(213, 242, 237, 0.2) 50%,
+          #d5f2ed 89%
+        );
+      }
     </style>
 
     <!-- 메타 픽셀 코드 설치 Meta Pixel Code -->
@@ -227,456 +242,13 @@
           <section
             id="page-product-list"
             data-page
-            class="hide-scrollbar relative hidden h-full overflow-y-auto"
+            class="hide-scrollbar relative hidden h-full overflow-y-auto bg-white pb-[100px]"
           >
-            <img
-              src="./design/2.Product_list_page.jpg"
-              alt="AMPM Product List Page"
-              class="block h-auto w-full select-none"
-              draggable="false"
-            />
-            <div class="absolute inset-0 z-50 pointer-events-auto">
-              <button
-                type="button"
-                data-back-target="home"
-                class="absolute left-3 top-12 h-10 w-10 bg-transparent"
-                aria-label="Back to Home"
-              ></button>
-              <div class="pointer-events-auto absolute inset-0 z-20">
-                <div
-                  class="absolute left-[25px] top-[216px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="1"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 1 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="1"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 1"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[216px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="2"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 2 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="2"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 2"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[555px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="3"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 3 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="3"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 3"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[555px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="4"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 4 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="4"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 4"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[1045px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="5"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 5 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="5"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 5"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[1045px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="6"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 6 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="6"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 6"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[1390px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="7"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 7 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="7"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 7"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[1390px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="8"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 8 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="8"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 8"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[1825px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="9"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 9 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="9"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 9"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[1825px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="10"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 10 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="10"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 10"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[2165px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="11"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 11 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="11"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 11"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[2165px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="12"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 12 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="12"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 12"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[2630px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="13"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 13 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="13"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 13"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[2630px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="14"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 14 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="14"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 14"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[25px] top-[2980px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="15"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 15 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="15"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 15"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-                <div
-                  class="absolute left-[238px] top-[2980px] h-[194px] w-[198px]"
-                >
-                  <button
-                    type="button"
-                    data-product-id="16"
-                    class="absolute inset-0 z-0 cursor-pointer bg-transparent rounded-xl"
-                    aria-label="상품 16 상세"
-                  ></button>
-                  <button
-                    type="button"
-                    data-list-cart-id="16"
-                    class="absolute bottom-2 right-2 z-10 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-transform active:scale-90 [font-family:Inter,_sans-serif]"
-                    aria-label="장바구니 담기 16"
-                  >
-                    <img
-                      src="./design/global_bar_icon_cart.jpg"
-                      alt=""
-                      class="pointer-events-none h-[18px] w-[18px] object-contain"
-                      draggable="false"
-                      onerror="
-                        this.onerror = null;
-                        this.src = './assets/bar_icon_cart.svg';
-                      "
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <div
+              id="product-list-root"
+              class="product-list-page pb-4"
+              aria-label="상품 목록"
+            ></div>
           </section>
 
           <section
@@ -1050,23 +622,139 @@
           <section
             id="page-detail"
             data-page
-            class="relative hidden h-full flex-col bg-white pt-[58px]"
+            class="product-detail-page relative hidden h-full flex-col bg-white pt-[58px] [font-family:Inter,_sans-serif]"
           >
-            <main class="hide-scrollbar flex-1 overflow-y-auto pb-[80px] pt-2">
-              <img
-                id="detail-image"
-                src=""
-                alt="Product detail"
-                class="block h-auto min-h-full w-full object-contain bg-white"
-                draggable="false"
-              />
+            <main class="hide-scrollbar flex-1 overflow-y-auto pb-[150px]">
+              <div
+                class="relative mx-auto h-[400px] w-full max-w-[402px] bg-white"
+              >
+                <img
+                  id="detail-image"
+                  src=""
+                  alt=""
+                  class="h-full w-full object-contain"
+                  draggable="false"
+                />
+                <span
+                  id="detail-discount-badge"
+                  class="absolute left-3 top-3 hidden rounded-[22px] bg-[#a7c503] px-2.5 py-1 text-[10px] font-bold leading-3 text-white"
+                  >할인</span
+                >
+              </div>
+
+              <div class="px-[21px] pt-5">
+                <h1
+                  id="detail-name"
+                  class="m-0 text-[20px] font-semibold leading-6 tracking-[-0.4px] text-[#1f1f1f]"
+                ></h1>
+                <div id="detail-price" class="mt-3"></div>
+                <div
+                  class="mt-4 flex w-[187px] max-w-full justify-between text-[11px] leading-[13px] text-black"
+                >
+                  <span>픽업</span>
+                  <span>배달</span>
+                </div>
+              </div>
+
+              <div class="mt-6 h-3 bg-[#f6f6f6]" aria-hidden="true"></div>
+
+              <section class="px-[21px] py-6">
+                <div class="flex items-start justify-between gap-3">
+                  <h2
+                    class="m-0 text-[20px] font-bold leading-6 text-[#1a1a1a]"
+                  >
+                    결제 행사
+                  </h2>
+                  <span class="shrink-0 text-[15px] font-bold text-[#636363]"
+                    >자세히보기</span
+                  >
+                </div>
+                <p class="m-0 mt-4 text-[13px] leading-4 text-[#404040]">
+                  <span class="font-bold">할인</span>
+                  <span class="ml-2 font-normal"
+                    >CU Npay 삼성카드 결제시 일반상품 15% 할인</span
+                  >
+                </p>
+              </section>
+
+              <div class="h-3 bg-[#f6f6f6]" aria-hidden="true"></div>
+
+              <section class="px-[21px] py-6">
+                <ul class="m-0 list-none space-y-8 p-0">
+                  <li class="flex items-center justify-between gap-3">
+                    <span class="text-[15px] font-bold leading-[18px] text-black"
+                      >상품정보제공고시</span
+                    >
+                    <span
+                      class="text-[20px] font-light leading-6 text-[#9e9e9e]"
+                      aria-hidden="true"
+                      >&gt;</span
+                    >
+                  </li>
+                  <li class="flex items-center justify-between gap-3">
+                    <span class="text-[15px] font-bold leading-[18px] text-black"
+                      >이용안내/유의사항</span
+                    >
+                    <span
+                      class="text-[20px] font-light leading-6 text-[#9e9e9e]"
+                      aria-hidden="true"
+                      >&gt;</span
+                    >
+                  </li>
+                  <li class="flex items-center justify-between gap-3">
+                    <span class="text-[15px] font-bold leading-[18px] text-black"
+                      >취소/교환/환불안내</span
+                    >
+                    <span
+                      class="text-[20px] font-light leading-6 text-[#9e9e9e]"
+                      aria-hidden="true"
+                      >&gt;</span
+                    >
+                  </li>
+                </ul>
+              </section>
+
+              <div class="h-3 bg-[#f6f6f6]" aria-hidden="true"></div>
+
+              <section class="px-[21px] py-6">
+                <h2 class="m-0 text-[15px] font-bold leading-[18px] text-black">
+                  리뷰(8)
+                </h2>
+              </section>
+
+              <footer class="bg-[#f8f8f8] px-[21px] py-5">
+                <div
+                  class="border border-[#e6e6e6] bg-white px-4 py-3 text-[10px] leading-3 text-black"
+                >
+                  <p class="m-0">
+                    고객리뷰 실시간 확인 상품 바로가기 &gt;
+                  </p>
+                  <p class="m-0 mt-1 text-[8px] leading-[10px] text-[#7e7e7e]">
+                    평일 09:00 - 18:00
+                  </p>
+                </div>
+                <p
+                  class="m-0 mt-4 flex items-center justify-between text-[12px] font-bold leading-[15px] text-black"
+                >
+                  <span>(주)비지에프리테일 사업자 정보</span>
+                  <span class="text-[15px] font-normal" aria-hidden="true"
+                    >⌄</span
+                  >
+                </p>
+              </footer>
             </main>
-            <button
-              type="button"
-              id="detail-purchase-button"
-              class="absolute inset-x-4 bottom-[165px] h-[70px] bg-transparent"
-              aria-label="Purchase"
-            ></button>
+
+            <div
+              class="absolute inset-x-0 bottom-[80px] z-20 bg-white px-[21px] py-3"
+            >
+              <button
+                type="button"
+                id="detail-purchase-button"
+                class="mx-auto flex h-[59px] w-full max-w-[360px] items-center justify-center rounded-[30px] bg-[#a7c503] text-[20px] font-bold leading-6 text-white transition-transform active:scale-[0.98]"
+              >
+                구매하기
+              </button>
+            </div>
           </section>
         </div>
 
@@ -1507,6 +1195,11 @@
       );
       const productListPage = document.getElementById("page-product-list");
       const detailImage = document.getElementById("detail-image");
+      const detailName = document.getElementById("detail-name");
+      const detailPrice = document.getElementById("detail-price");
+      const detailDiscountBadge = document.getElementById(
+        "detail-discount-badge",
+      );
       const detailPurchaseButton = document.getElementById(
         "detail-purchase-button",
       );
@@ -1587,112 +1280,112 @@
           id: "1",
           name: "빅삼)태양초고추장참치",
           price: 1800,
-          img: "./assets/1.svg",
+          img: "./design/cart_prod_1.jpg",
           category: "도시락/김밥",
         },
         2: {
           id: "2",
           name: "삼)김치제육삼각",
           price: 1400,
-          img: "./assets/2.svg",
+          img: "./design/cart_prod_2.jpg",
           category: "도시락/김밥",
         },
         3: {
           id: "3",
           name: "김)밥반찬반계란김밥",
           price: 3200,
-          img: "./assets/3.svg",
+          img: "./design/cart_prod_3.jpg",
           category: "도시락/김밥",
         },
         4: {
           id: "4",
           name: "도)제육&간장불백더블",
           price: 5700,
-          img: "./assets/4.svg",
+          img: "./design/cart_prod_4.jpg",
           category: "도시락/김밥",
         },
         5: {
           id: "5",
           name: "연세)우유생크림빵",
           price: 2800,
-          img: "./assets/5.svg",
+          img: "./design/cart_prod_5.jpg",
           category: "디저트/빵",
         },
         6: {
           id: "6",
           name: "푸드)황치즈쫀득쿠키",
           price: 3500,
-          img: "./assets/6.svg",
+          img: "./design/cart_prod_6.jpg",
           category: "디저트/빵",
         },
         7: {
           id: "7",
           name: "연세)밀크파베초콜릿",
           price: 4000,
-          img: "./assets/7.svg",
+          img: "./design/cart_prod_7.jpg",
           category: "디저트/빵",
         },
         8: {
           id: "8",
           name: "인테)곤약젤리망고",
           price: 1900,
-          img: "./assets/8.svg",
+          img: "./design/cart_prod_8.jpg",
           category: "디저트/빵",
         },
         9: {
           id: "9",
           name: "del)블랙아메리카노500",
           price: 1800,
-          img: "./assets/9.svg",
+          img: "./design/cart_prod_9.jpg",
           category: "음료",
         },
         10: {
           id: "10",
           name: "롯데)밀키스캔250ml",
           price: 1500,
-          img: "./assets/10.svg",
+          img: "./design/cart_prod_10.jpg",
           category: "음료",
         },
         11: {
           id: "11",
           name: "칸타타)아메캔200ml",
           price: 1500,
-          img: "./assets/11.svg",
+          img: "./design/cart_prod_11.jpg",
           category: "음료",
         },
         12: {
           id: "12",
           name: "롯데)솔의눈캔240ml",
           price: 1300,
-          img: "./assets/12.svg",
+          img: "./design/cart_prod_12.jpg",
           category: "음료",
         },
         13: {
           id: "13",
           name: "면)꾸덕크림스파게티",
           price: 3900,
-          img: "./assets/13.svg",
+          img: "./design/cart_prod_13.jpg",
           category: "라면/간편식",
         },
         14: {
           id: "14",
           name: "하림)치킨왕라면",
           price: 1800,
-          img: "./assets/14.svg",
+          img: "./design/cart_prod_14.jpg",
           category: "라면/간편식",
         },
         15: {
           id: "15",
           name: "햄)빅피자버거1",
           price: 3500,
-          img: "./assets/15.svg",
+          img: "./design/cart_prod_15.jpg",
           category: "라면/간편식",
         },
         16: {
           id: "16",
           name: "농심)신라면골드봉지",
           price: 1500,
-          img: "./assets/16.svg",
+          img: "./design/cart_prod_16.jpg",
           category: "라면/간편식",
         },
         17: {
@@ -1773,6 +1466,171 @@
           category: "도시락/김밥",
         },
       };
+
+      /** Figma product_list_page_copy (6562px) + list page component_copy */
+      const productListSections = [
+        {
+          category: "유산균/장건강",
+          height: 359,
+          productIds: ["health-2"],
+        },
+        {
+          category: "비타민",
+          height: 660,
+          productIds: ["health-14", "health-15", "health-16", "health-8"],
+        },
+        {
+          category: "스포츠",
+          height: 660,
+          productIds: ["health-7", "health-10", "health-13", "health-9"],
+        },
+        {
+          category: "피부건강",
+          height: 359,
+          productIds: ["health-11"],
+        },
+        {
+          category: "다이어트보조제",
+          height: 660,
+          productIds: ["health-4", "health-9", "health-17"],
+        },
+        {
+          category: "콜레스테롤/혈행개선",
+          height: 359,
+          productIds: ["health-6", "health-12"],
+        },
+        {
+          category: "눈건강",
+          height: 359,
+          productIds: ["health-1"],
+        },
+        {
+          category: "도시락/김밥",
+          height: 660,
+          productIds: ["1", "2", "3", "4"],
+        },
+        {
+          category: "디저트/빵",
+          height: 660,
+          productIds: ["5", "6", "7", "8"],
+        },
+        {
+          category: "음료",
+          height: 660,
+          productIds: ["9", "10", "11", "12"],
+        },
+        {
+          category: "라면/간편식",
+          height: 660,
+          productIds: ["13", "14", "15", "16"],
+        },
+      ];
+
+      const productListCartIconHtml = `<img src="./design/global_bar_icon_cart.jpg" alt="" class="pointer-events-none h-[18px] w-[18px] object-contain" draggable="false" onerror="this.onerror=null;this.src='./assets/bar_icon_cart.svg';" />`;
+
+      function formatListPrice(price) {
+        return `${Number(price).toLocaleString("ko-KR")}원`;
+      }
+
+      function buildProductPriceHtml(product, size) {
+        const isDetail = size === "detail";
+        if (product.discountRate && product.originalPrice) {
+          return `
+              <div class="${isDetail ? "" : "mt-[2px]"} flex max-w-full flex-wrap items-baseline gap-x-[5px] gap-y-0">
+                <span class="${isDetail ? "text-[22px] leading-7" : "text-[18px] leading-[22px]"} font-bold text-[#d62222]">${product.discountRate}%</span>
+                <span class="${isDetail ? "text-[28px] leading-[34px] text-[#141414]" : "text-[18px] leading-[22px] text-black"} font-bold">${formatListPrice(product.price)}</span>
+                <span class="${isDetail ? "text-[18px] leading-[22px]" : "text-[14px] leading-[17px]"} font-medium text-[#bfbfbf] line-through">${formatListPrice(product.originalPrice)}</span>
+              </div>
+          `;
+        }
+        return `
+              <p class="m-0 ${isDetail ? "text-[28px] leading-[34px] text-[#141414]" : "mt-[2px] shrink-0 text-[18px] leading-[22px] text-black"} font-bold">${formatListPrice(product.price)}</p>
+        `;
+      }
+
+      function buildProductListPriceHtml(product) {
+        return buildProductPriceHtml(product, "list");
+      }
+
+      function buildProductListCardHtml(product) {
+        if (!product) return "";
+        const cartId = String(product.id);
+        const hasDiscount = product.discountRate && product.originalPrice;
+        const discountBadgeHtml = hasDiscount
+          ? `<span class="absolute left-1 top-1 z-10 rounded-[22px] bg-[#a7c503] px-2 py-0.5 text-[10px] font-bold leading-3 text-white [font-family:Inter,_sans-serif]">할인</span>`
+          : "";
+        return `
+          <article class="w-[178px] shrink-0">
+            <div class="relative h-[181px] w-full overflow-hidden rounded-[15px] bg-white">
+              <button
+                type="button"
+                data-product-id="${cartId}"
+                class="absolute inset-0 z-0 cursor-pointer bg-transparent"
+                aria-label="${product.name} 상세"
+              ></button>
+              ${discountBadgeHtml}
+              <img
+                src="${product.img}"
+                alt=""
+                class="pointer-events-none h-full w-full rounded-[10px] object-cover"
+                draggable="false"
+                onerror="if(!this.dataset.fallback&&/^\\d+$/.test('${cartId}')){this.dataset.fallback='1';this.src='./assets/${cartId}.svg';}"
+              />
+              <button
+                type="button"
+                data-list-cart-id="${cartId}"
+                class="absolute bottom-2 right-2 z-10 flex h-[38px] w-[38px] cursor-pointer items-center justify-center rounded-[10px] border border-[#bfbfbf] bg-white transition-transform active:scale-90"
+                aria-label="${product.name} 장바구니 담기"
+              >${productListCartIconHtml}</button>
+            </div>
+            <button
+              type="button"
+              data-product-id="${cartId}"
+              class="mt-[10px] block w-full cursor-pointer bg-transparent text-left"
+            >
+              <p class="m-0 line-clamp-2 text-[18px] font-bold leading-[22px] text-black [font-family:Inter,_sans-serif]">${product.name}</p>
+              ${buildProductListPriceHtml(product)}
+            </button>
+            <p class="mt-2 flex items-center gap-[7px] text-[13px] leading-4 text-black [font-family:Inter,_sans-serif]">
+              <span>픽업</span>
+              <span class="h-[2px] w-[2px] shrink-0 rounded-full bg-black" aria-hidden="true"></span>
+              <span>배달</span>
+            </p>
+          </article>
+        `;
+      }
+
+      function renderProductListPage() {
+        const root = document.getElementById("product-list-root");
+        if (!root) return;
+
+        const sectionsHtml = productListSections
+          .map((section) => {
+            const cardsHtml = section.productIds
+              .map((id) => buildProductListCardHtml(getProduct(id)))
+              .join("");
+            return `
+              <section class="relative w-full shrink-0 pb-8" style="min-height:${section.height}px">
+                <div class="product-list-category__gradient absolute inset-x-0 top-0 h-[178px]" aria-hidden="true"></div>
+                <h2 class="relative z-10 m-0 flex items-center gap-1 px-[21px] pt-[57px] text-[18px] font-bold leading-none text-black [font-family:Inter,_sans-serif]">
+                  ${section.category}
+                  <span class="text-[16px] font-normal text-black/70" aria-hidden="true">›</span>
+                </h2>
+                <div class="relative z-10 mt-[31px] grid grid-cols-2 justify-items-center gap-x-[5px] gap-y-[30px] px-[21px]">
+                  ${cardsHtml}
+                </div>
+              </section>
+            `;
+          })
+          .join("");
+
+        root.innerHTML = `
+          <div class="h-[103px] shrink-0 bg-white" aria-hidden="true"></div>
+          ${sectionsHtml}
+          <div class="h-6 shrink-0" aria-hidden="true"></div>
+        `;
+      }
+
       const coupons = [
         {
           id: "cp-1",
@@ -2235,10 +2093,39 @@
         }, 3300);
       }
 
-      function setDetailImage(imagePath) {
-        if (!detailImage) return;
-        detailImage.onerror = null;
-        detailImage.src = imagePath;
+      function renderDetailPage(product) {
+        if (!product) return;
+
+        if (detailImage) {
+          detailImage.alt = product.name || "상품 이미지";
+          detailImage.onerror = function onDetailImageError() {
+            if (this.dataset.fallback) return;
+            const id = String(product.id);
+            if (/^\d+$/.test(id)) {
+              this.dataset.fallback = "1";
+              this.src = `./assets/${id}.svg`;
+            }
+          };
+          detailImage.removeAttribute("data-fallback");
+          detailImage.src = product.img;
+        }
+
+        if (detailName) detailName.textContent = product.name || "";
+        if (detailPrice) {
+          detailPrice.innerHTML = buildProductPriceHtml(product, "detail");
+        }
+
+        const hasDiscount = product.discountRate && product.originalPrice;
+        if (detailDiscountBadge) {
+          detailDiscountBadge.classList.toggle("hidden", !hasDiscount);
+        }
+
+        if (detailPurchaseButton) {
+          detailPurchaseButton.setAttribute(
+            "aria-label",
+            `${product.name} 구매하기`,
+          );
+        }
       }
 
       function showDetail(productId) {
@@ -2251,11 +2138,7 @@
         lastViewedProductName = product.name || null;
         lastViewedCategory = product.category || null;
         isPurchaseActionTaken = false;
-        setDetailImage(product.img);
-        detailPurchaseButton?.setAttribute(
-          "aria-label",
-          `${product.name} 구매하기`,
-        );
+        renderDetailPage(product);
         showPage("detail");
       }
 
@@ -2534,6 +2417,9 @@
         if (pageKey !== "product-list") {
           clearCouponIssueTimer();
         }
+        if (pageKey === "product-list" && productListPage) {
+          productListPage.scrollTo({ top: 0, behavior: "auto" });
+        }
         if (pageKey === "cart" && currentPageKey !== "cart") {
           previousPageKey = currentPageKey;
         }
@@ -2734,6 +2620,11 @@
       if (topbarBack) {
         topbarBack.addEventListener("click", () => {
           if (currentPageKey === "product-list") {
+            if (window.sessionStorage.getItem("ampmReturnToHealth") === "1") {
+              window.sessionStorage.removeItem("ampmReturnToHealth");
+              window.location.assign("./health.html");
+              return;
+            }
             showPage("home");
             return;
           }
@@ -2943,13 +2834,21 @@
       const fromHealthEntry = healthEntryParams.get("from") === "health";
       const healthEntryPage = healthEntryParams.get("page");
       const healthEntryTargetPage =
-        healthEntryPage === "cart" || healthEntryPage === "coupon" ? healthEntryPage : "home";
+        healthEntryPage === "cart" ||
+        healthEntryPage === "coupon" ||
+        healthEntryPage === "product-list"
+          ? healthEntryPage
+          : "home";
 
       if (fromHealthEntry) {
         window.history.replaceState(null, "", window.location.pathname);
+        if (healthEntryPage === "product-list") {
+          window.sessionStorage.setItem("ampmReturnToHealth", "1");
+        }
       }
 
       hydrateCart();
+      renderProductListPage();
 
       setupRollingBannerLoop();
       moveRollingBanner(0);
@@ -2961,6 +2860,9 @@
       if (fromHealthEntry && healthEntryTargetPage === "home") {
         const homePage = document.getElementById("page-home");
         homePage?.scrollTo({ top: 0, behavior: "auto" });
+      }
+      if (fromHealthEntry && healthEntryTargetPage === "product-list") {
+        productListPage?.scrollTo({ top: 0, behavior: "auto" });
       }
     </script>
   </body>

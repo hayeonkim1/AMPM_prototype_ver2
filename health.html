@@ -300,7 +300,7 @@
                             <div class="health-price-promo-row">
                               <span class="health-discount-rate">40%</span>
                               <span class="health-price-sale">3,000원</span>
-                              <span class="health-price-was">3,500원</span>
+                              <span class="health-price-was">5,000원</span>
                             </div>
                           </div>
                           <button type="button" data-health-cart="3" class="health-cart-btn h-[30px] w-full text-xs">장바구니 담기</button>
@@ -792,6 +792,10 @@
           const target = button.dataset.navTarget;
           if (target === "home") {
             window.location.assign("./index.html?from=health");
+            return;
+          }
+          if (target === "product-list") {
+            window.location.assign("./index.html?from=health&page=product-list");
             return;
           }
           showPage(target);
